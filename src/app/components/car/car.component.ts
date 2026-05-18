@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Car } from '../../models/car.interface';
 import { FormsModule } from '@angular/forms';
 
@@ -10,9 +10,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class CarComponent {
 
+  @Input()
   car: Car = {} as Car;
 
+  @Output()
+  saveEmmiter = new EventEmitter();
+
   save(){
-    console.log("Registro do carro: " + this.car.name + " Salvo com sucesso!");
+    this.saveEmmiter.emit(this.car);
   }
 }
